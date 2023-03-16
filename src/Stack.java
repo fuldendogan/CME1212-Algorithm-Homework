@@ -1,6 +1,6 @@
 public class Stack {
-    private int size;
-    private Node[] elements;
+    int size;
+    Node[] elements;
 
     public Stack() {
         size = 0;
