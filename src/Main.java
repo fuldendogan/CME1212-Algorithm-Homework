@@ -86,7 +86,14 @@ public class Main {
     private static Node getItemFromStack(Stack stack, int i) {
         //get i.th element from stack
         Stack tempStack = new Stack();
-        Node item = null;
+        Object item = null;
+        for (int j = 0; j < stack.size(); j++) {
+            Object element = stack.pop();
+            if (j == i) {
+                item = element;
+            }
+            tempStack.push(element);
+        }
     }
 
     //    q1: Kaan Ali Yeliz Cem Can Pelin Ece Sibel Ayşe Berk Ege Ada
@@ -125,7 +132,7 @@ public class Main {
     private static void printStack(Stack stack) {
         Stack tempStack = new Stack();
         while (!stack.isEmpty()) {
-            Node element = stack.pop();
+            Object element = stack.pop();
             System.out.print(element + " ");
             tempStack.push(element);
         }

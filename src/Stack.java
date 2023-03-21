@@ -1,33 +1,34 @@
 public class Stack {
-    int size;
-    Node[] elements;
+    private int size;
+    private Object[] elements;
 
     public Stack() {
         size = 0;
         elements = new Node[12];
     }
 
-    public void push(Node data) {
+    public void push(Object data) {
         if (isFull()) {
             System.out.println("Stack is full");
             return;
         }
         elements[size] = data;
         size++;
+
     }
 
-    public Node pop() {
+    public Object pop() {
         if (isEmpty()) {
             System.out.println("Stack is empty");
             return null;
         }
-        Node node = elements[size];
+        Object retData = elements[size];
         elements[size] = null;
         size--;
-        return node;
+        return retData;
     }
 
-    public Node peek() {
+    public Object peek() {
         if (isEmpty()) {
             System.out.println("Stack is empty");
             return null;
