@@ -3,15 +3,15 @@ class Stack {
     private int top;
     private Object[] elements;
 
-    Stack(int capacity) {
-        elements = new Object[capacity];
+    Stack(int maxCapacity) {
+        elements = new Object[maxCapacity];
         top = -1;
     }
 
     void push(Object data) {
         if (isFull())
             System.out.println("Stack overflow");
-            else{
+        else {
             top++;
             elements[top] = data;
         }
