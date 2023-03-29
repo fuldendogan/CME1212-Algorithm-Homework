@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Main {
 
-    static Queue nameQ = new Queue();   // HighScore names
-    static Queue scoreQ = new Queue();  // HighScore scores
+    static Queue nameQ = new Queue(30);   // HighScore names
+    static Queue scoreQ = new Queue(30);  // HighScore scores
     static Stack player1 = new Stack(); // Player 1's cards
     static Stack player2 = new Stack(); // Player 2's cards
 
@@ -18,7 +18,7 @@ public class Main {
                 nameQ.enqueue(new Node(myReader.next()));
                 scoreQ.enqueue(new Node(myReader.next()));
             }
-            System.out.println("q1: " + nameQ.deepToString());
+            System.out.println("q1: " + nameQ);
             System.out.println("q2: " + scoreQ.deepToString());
 //            sortQueue();
 //            System.out.println("sorted q1: " + nameQ.deepToString());
