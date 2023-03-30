@@ -11,7 +11,6 @@ public class Main {
     static Queue scoreQ = new Queue(MAX_CAPACITY);  // HighScore scores maksimum 12
     static Stack player1 = new Stack(MAX_CAPACITY); // Player 1's cards
     static Stack player2 = new Stack(MAX_CAPACITY); // Player 2's cards
-
     static Stack bag1 = new Stack(13); // bag1
     static Stack bag2 = new Stack(13); // bag2
 
@@ -31,7 +30,14 @@ public class Main {
         }
 
         takeInputAndInitializePlayerDecks();
+        initializationOfBag();
         gameLoop();
+    }
+
+    private static void initializationOfBag() {
+        for (int i = 13; i >= 1; i--) {
+            bag1.push(i);
+        }
     }
 
     private static void takeInputAndInitializePlayerDecks() {
@@ -50,6 +56,7 @@ public class Main {
                 }
             }
         }
+//        sortStack(player1);
 
         for (int j = 1; j <= stackSize; j++) {
             while (player2.size() < stackSize) {
@@ -59,6 +66,8 @@ public class Main {
                 }
             }
         }
+//        sortStack(player2);
+
     }
 
     private static void gameLoop() {
@@ -76,8 +85,18 @@ public class Main {
         while (!gameFinished) {
             System.out.print("Player1: ");
             printStack(player1);
+            System.out.print("Score: " + score + "    ");
+            System.out.print("Bag1: ");
+            printStack(bag1);
+            System.out.println();
+
             System.out.print("Player2: ");
             printStack(player2);
+            System.out.print("Score: " + score + "    ");
+            System.out.print("Bag2: ");
+            printStack(bag2);
+            System.out.println();
+
             gameFinished =  true;
             round++;
         }
@@ -124,13 +143,11 @@ public class Main {
             System.out.print(getSymbol(element) + " ");
             tempStack.push(element);
         }
-        System.out.println();
 
         while (!tempStack.isEmpty()) {
             stack.push(tempStack.pop());
         }
     }
-
     private static String getSymbol(Object element) {
         if (element instanceof Integer) {
             int num = (int) element;
@@ -148,6 +165,24 @@ public class Main {
             }
         }
         return element.toString();
+    }
+    private static void sortStack(Stack stack){
+        int size = stack.size();
+        Stack sortedStack = new Stack(size);
+        int max = 0;
+        for (int i = 0; i < size; i++) {
+            max = 0;
+            for (int j = 0; j < size; j++) {
+                int num = (int) getItemFromStack(stack, j);
+                if (num > max && isStackContains(sortedStack, num) == -1) {
+                    max = num;
+                }
+            }
+            sortedStack.push(max);
+        }
+        while (!sortedStack.isEmpty()) {
+            stack.push(sortedStack.pop());
+        }
     }
     // End of Stack methods
 
@@ -191,7 +226,6 @@ public class Main {
         System.out.println("sorted nameQ: " + printQueue(nameQ));
         System.out.println("sorted scoreQ: " + printQueue(scoreQ));
     }
-
     private static String printQueue(Queue queue) {
         int size = queue.size();
         Queue tempQ = new Queue(size);
@@ -206,7 +240,6 @@ public class Main {
         }
         return result;
     }
-
     private static int isQueueContains(Queue queue, String target) {
         //copy queue to tempQ
         int size = queue.size();
@@ -227,5 +260,4 @@ public class Main {
         return index;
     }
     // End of Queue methods
-
 }
