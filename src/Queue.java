@@ -41,7 +41,7 @@ public class Queue {
     }
 
     boolean isEmpty() {
-        return tail < head;
+        return tail <= head;
     }
 
     boolean isFull() {
